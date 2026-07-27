@@ -20,10 +20,6 @@
 
   nixenv.enable = true;
 
-  nixpkgs.config.packageOverrides = pkgs: {
-    odin = pkgs.odin.override { llvmPackages_18 = pkgs.llvmPackages_22; };
-  };
-
   neovim = {
     enable  = true;
     useLsps = true;

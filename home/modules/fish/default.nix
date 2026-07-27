@@ -43,6 +43,7 @@
     shellInit = ''
       set -gx EDITOR nvim
       set -gx PATH $HOME/.local/bin $PATH
+      set -gx PATH $HOME/.dorade/bin $PATH
     '';
     shellInitLast = ''
       zoxide init fish | source
@@ -53,4 +54,3 @@
     };
   };
 }
-

@@ -13,8 +13,8 @@ let
   rustPackages = with pkgs; [ rustup ];
   zigPackages  = with pkgs; [ zig ];
   odinPackages = with pkgs; [
-    odin
-    ols
+    (odin.override { llvmPackages_18 = pkgs.llvmPackages_22; })
+    (ols.override { odin = pkgs.odin.override { llvmPackages_18 = pkgs.llvmPackages_22; }; })
   ];
   goPackages   = with pkgs; [ go wgo gopls ];
   phpPackages  = with pkgs; [ php php84Packages.composer ];
