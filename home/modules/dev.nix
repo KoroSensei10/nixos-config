@@ -8,19 +8,16 @@ let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.devEnvs;
 
-  commonPackages = with pkgs; [
-    cloc
-  ];
+  commonPackages = with pkgs; [ cloc ];
+
   rustPackages = with pkgs; [ rustup ];
-  zigPackages = with pkgs; [ zig ];
-  goPackages = with pkgs; [
-    go
-    wgo
+  zigPackages  = with pkgs; [ zig ];
+  odinPackages = with pkgs; [
+    odin
+    ols
   ];
-  phpPackages = with pkgs; [
-    php
-    php84Packages.composer
-  ];
+  goPackages   = with pkgs; [ go wgo gopls ];
+  phpPackages  = with pkgs; [ php php84Packages.composer ];
   nodePackages = with pkgs; [
     nodejs_24 # Node contains npm, npx
     (yarn.override { withNode = false; }) # https://github.com/NixOS/nixpkgs/blob/master/pkgs/by-name/ya/yarn/package.nix
@@ -32,6 +29,7 @@ in
   options.devEnvs = {
     enable = mkEnableOption "Global dev env";
     rustEnv.enable = mkEnableOption "Rust dev environment";
+    odinEnv.enable = mkEnableOption "Odin dev environment";
     goEnv.enable = mkEnableOption "Go dev environment";
     phpEnv.enable = mkEnableOption "PHP dev environment";
     nodeEnv.enable = mkEnableOption "Js node dev environment";
@@ -46,6 +44,7 @@ in
       ++ lib.optionals cfg.phpEnv.enable phpPackages
       ++ lib.optionals cfg.goEnv.enable goPackages
       ++ lib.optionals cfg.zigEnv.enable zigPackages
+      ++ lib.optionals cfg.odinEnv.enable odinPackages
     ;
   };
 }

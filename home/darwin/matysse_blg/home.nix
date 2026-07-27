@@ -9,7 +9,7 @@
 {
   imports = [
     ../common.nix
-	../../modules/tmux.nix
+    ../../modules/tmux.nix
     ../../modules/neovim.nix
     ../../modules/emacs.nix
     ../../modules/fish
@@ -20,24 +20,27 @@
 
   nixenv.enable = true;
 
-  emacs.enable = true;
-  tmux.enable = true;
+  nixpkgs.config.packageOverrides = pkgs: {
+    odin = pkgs.odin.override { llvmPackages_18 = pkgs.llvmPackages_22; };
+  };
+
   neovim = {
-	  enable  = true;
-	  useLsps = true;
+    enable  = true;
+    useLsps = true;
   };
 
   home.packages = with pkgs; [
-  	redis
+    redis
   ];
 
   devEnvs = {
-    enable 		   = true;
+    enable         = true;
     phpEnv.enable  = true;
     nodeEnv.enable = true;
     rustEnv.enable = true;
     zigEnv.enable  = true;
-	goEnv.enable   = true;
+    goEnv.enable   = true;
+    odinEnv.enable = true;
   };
 
   # Version de la config, doit rester constante après première install

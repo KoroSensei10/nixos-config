@@ -1,8 +1,8 @@
 {
-  config,
-  lib,
+  # config,
+  # lib,
   pkgs,
-  mainUser,
+  # mainUser,
   ...
 }:
 let
@@ -10,15 +10,19 @@ in
 {
   imports = [
     ../common.nix
+    ../../modules/emacs.nix
     ../../modules/obsidian.nix
     ../../modules/dev.nix
-    ../../modules/vscode.nix
     ../../modules/neovim.nix
   ];
 
   neovim = {
     enable  = true;
     useLsps = true;
+  };
+
+  nixpkgs.config.packageOverrides = pkgs: {
+    odin = pkgs.odin.override { llvmPackages_18 = pkgs.llvmPackages_22; };
   };
 
   devEnvs = {
@@ -28,17 +32,11 @@ in
     rustEnv.enable = true;
     goEnv.enable   = true;
     zigEnv.enable  = true;
+    odinEnv.enable = true;
   };
 
   home.packages = with pkgs; [
     yt-dlp
-
-    # c3c, problem with fish completions
-    gcc-arm-embedded
-	qemu
-
-    # debugging tools
-    lldb
   ];
 
   # https://home-manager-options.extranix.com/?query=programs.nh.flake&release=master

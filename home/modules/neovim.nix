@@ -27,7 +27,7 @@ let
 		lazygit
 		tree-sitter
 	];
-in 
+in
 {
 	options = {
 		neovim = {

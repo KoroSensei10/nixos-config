@@ -1,7 +1,7 @@
 {
-  config,
+  # config,
+  # mainUser,
   pkgs,
-  mainUser,
   ...
 }:
 {
@@ -10,14 +10,15 @@
   environment.systemPackages = with pkgs; [
     c3c # here because of fish completions
   ];
+
   # Mandatory for homebrew
   homebrew = {
     enable = true;
     onActivation.cleanup = "uninstall";
 
     brews = [
-		"make"
-	];
+      "make"
+    ];
     casks = [
       "bruno"
       "blender"
