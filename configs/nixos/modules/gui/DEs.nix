@@ -8,6 +8,7 @@ in{
       enable = lib.mkEnableOption "Enable a desktop environment";
       xfce.enable = lib.mkEnableOption "Use XFCE as DE";
       plasma.enable = lib.mkEnableOption "Use KDE Plasma as DE";
+      gnome.enable = lib.mkEnableOption "Use Gnome as DE";
     };
   };
   config = lib.mkIf cfg.enable {
@@ -26,6 +27,9 @@ in{
     services.displayManager.sddm.enable = cfg.plasma.enable;
     services.desktopManager.plasma6.enable = cfg.plasma.enable;
 
+    # Enable the GNOME Desktop Environment.
+    services.xserver.displayManager.gdm.enable = cfg.gnome.enable;
+    services.xserver.desktopManager.gnome.enable = cfg.gnome.enable;
 
     # Audio
     services.pulseaudio.enable = false;

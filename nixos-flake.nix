@@ -30,7 +30,11 @@ let
 in
 {
   nixosConfigurations = {
-    "maty" = mkNixosSystem {
+    nixos = mkNixosSystem {
+      hostname = "maty";
+      username = "maty";
+    };
+    maty = mkNixosSystem {
       hostname = "maty";
       username = "maty";
     };
