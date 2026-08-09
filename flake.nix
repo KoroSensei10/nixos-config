@@ -37,7 +37,9 @@
       darwinModule = import ./darwin-flake.nix { inherit inputs lib; };
       nixosModule  = import ./nixos-flake.nix  { inherit inputs lib; };
       wslModule    = import ./wsl-flake.nix    { inherit inputs lib; };
-    in 
+    in  {
       # Merge des configurations Darwin et NixOS
-      darwinModule // nixosModule // wslModule;
+      nixosConfigurations = nixosModule.nixosConfigurations // wslModule.nixosConfigurations;
+      darwinConfigurations = darwinModule.darwinConfigurations;
+    };
 }

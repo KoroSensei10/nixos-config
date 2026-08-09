@@ -3,47 +3,34 @@ let username = mainUser;
 in {
   imports = [
     ../common.nix
+    ../modules/neovim.nix
     ../modules/dev.nix
     ../modules/fish
-    ../modules/alacritty.nix
-    ../modules/kitty.nix
+    ../modules/ghostty.nix
     ../modules/mangohud.nix
-    ../modules/obsidian.nix
   ];
   neovim.enable  = true;
-  devEnvs.enable = true;
-  devEnvs.rustEnv.enable = true;
-
-  programs.obsidian = {
-    defaultSettings.communityPlugins = [
-      # pkgs.git
-    ]; 
-    vaults = {
-      notes = {
-        target = "Documents/notes";
-      };
-    };
+  devEnvs = {
+    enable = true;
+    rustEnv.enable = true;
+    odinEnv.enable = true;
+    zigEnv.enable  = true;
   };
 
   home.username = username;
   home.homeDirectory = "/home/${username}";
 
   programs.home-manager.enable = true;
+  programs.zed-editor.enable = true;
+  programs.ghostty.package = pkgs.ghostty;
 
   home.packages = with pkgs; [
     # GUI
     discord
-    pinta
-    aseprite
-    blender
 
     # CLI
     unzip
     file
-
-    # Dev Board
-    arduino-ide
-    python314 # mandatory for arduino-ide
   ];
 
   # Version de la config, doit rester constante après première install

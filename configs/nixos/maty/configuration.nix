@@ -14,10 +14,10 @@ in {
     enable = true;
     plasma.enable = true;
   };
+  # services.displayManager.sddm = {
+  #   theme = "${pkgs.where-is-my-sddm-theme}/share/sddm/themes/where_is_my_sddm_theme";
+  # };
   services.xserver.videoDrivers = [ "amdgpu" ];
-  services.displayManager.sddm = {
-    theme = "${pkgs.where-is-my-sddm-theme}/share/sddm/themes/where_is_my_sddm_theme";
-  };
   hardware.bluetooth.enable = true;
 
   # boot.loader.systemd-boot.enable = true;
@@ -61,7 +61,7 @@ in {
     extraCompatPackages = [ pkgs.proton-ge-bin ];
   };
   # Manager AMD gpu
-  environment.systemPackages = with pkgs; [ 
+  environment.systemPackages = with pkgs; [
     gparted
     lact # manage amd GPU
     solaar # manager logitech devices

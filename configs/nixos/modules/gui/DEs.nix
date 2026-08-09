@@ -12,10 +12,6 @@ in{
     };
   };
   config = lib.mkIf cfg.enable {
-    assertions = [{
-      assertion = xor cfg.plasma.enable cfg.xfce.enable;
-      message = "You can enable only one DE !"; 
-    }];
     # DE's
     services.xserver.enable = true;
 

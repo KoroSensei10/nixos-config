@@ -1,6 +1,6 @@
 { pkgs, lib, ... }: {
   programs.ghostty = {
     enable = true;
-	package = pkgs.ghostty-bin;
+    package = lib.mkDefault pkgs.ghostty-bin;
   };
 }
