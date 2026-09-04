@@ -20,6 +20,7 @@
 
 	  # git
       gs = "git status";
+      gmm = "git merge (__git.default_branch)";
 
       # js
       p  = "pnpm"    ;
@@ -34,6 +35,10 @@
       h  = "history";
       la = "ls -alh";
       ll = "ls -lh";
+      ":q" = "exit";
+      ":qa" = "exit";
+      ":wq" = "exit";
+      ":waq" = "exit";
     };
 
     shellAliases = {

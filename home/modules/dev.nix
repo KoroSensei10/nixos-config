@@ -12,14 +12,11 @@ let
 
   rustPackages = with pkgs; [ rustup ];
   zigPackages  = with pkgs; [ zig ];
-  odinPackages = with pkgs; [
-    (odin.override { llvmPackages_18 = pkgs.llvmPackages_22; })
-    (ols.override { odin = pkgs.odin.override { llvmPackages_18 = pkgs.llvmPackages_22; }; })
-  ];
+  odinPackages = with pkgs; [ odin ols ];
   goPackages   = with pkgs; [ go wgo gopls ];
   phpPackages  = with pkgs; [ php php84Packages.composer ];
   nodePackages = with pkgs; [
-    nodejs_24 # Node contains npm, npx
+    nodejs_26 # Node contains npm, npx
     (yarn.override { withNode = false; }) # https://github.com/NixOS/nixpkgs/blob/master/pkgs/by-name/ya/yarn/package.nix
     (pnpm.override { withNode = false; })
     bun
