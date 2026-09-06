@@ -21,10 +21,6 @@ in
     useLsps = true;
   };
 
-  nixpkgs.config.packageOverrides = pkgs: {
-    odin = pkgs.odin.override { llvmPackages_18 = pkgs.llvmPackages_22; };
-  };
-
   devEnvs = {
     enable         = true; # Enable global dev environment
     phpEnv.enable  = true;
